@@ -19,3 +19,18 @@ def binary_search(sorted_list:list, search_key) -> int:
             res=mid
 
     return res if res else -(low + 1)
+
+def insort(sorted_list:list, item) -> list: 
+    """Insert item in sorted_list, and keep it sorted assuming sorted_list is sorted."""
+    low = 0
+    high = len(sorted_list)
+
+    while low < high:
+        mid = (low + high) // 2
+        if sorted_list[mid] < item:
+            low = mid + 1
+        else:
+            high = mid
+
+    sorted_list.insert(low, item)
+    return sorted_list
