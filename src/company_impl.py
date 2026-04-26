@@ -6,7 +6,6 @@ from exceptions import EmployeeAlreadyExistsError, EmployeeNotFoundError
 
 class CompanyImpl(Company):
     def __init__(self):
-        # Professional standard: use a leading underscore for internal attributes
         self._employees: dict[str, Employee] = {}
 
     def hire_employee(self, employee: Employee) -> None:
@@ -40,7 +39,7 @@ class CompanyImpl(Company):
         today = date.today()
         result = []
         for emp in self._employees.values():
-            # Robust age calculation
+            # age calculation
             age = today.year - emp.birthdate.year - (
                 (today.month, today.day) < (emp.birthdate.month, emp.birthdate.day)
             )
