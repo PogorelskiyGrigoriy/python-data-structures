@@ -1,6 +1,6 @@
 from collections import OrderedDict
 from collections.abc import Hashable
-from typing import Generic, TypeVar, Optional
+from typing import Generic, TypeVar
 
 K = TypeVar('K', bound=Hashable)
 V = TypeVar('V')
@@ -10,9 +10,9 @@ class MyLruCache(Generic[K, V]):
         self.capacity = capacity
         self.cache: OrderedDict[K, V] = OrderedDict()
 
-    def access(self, key: K) -> Optional[V]:
+    def access(self, key: K) -> V:
         if key not in self.cache:
-            return None
+            raise KeyError(f"Key {key} not found in cache")
         
         self.cache.move_to_end(key)
         return self.cache[key]
