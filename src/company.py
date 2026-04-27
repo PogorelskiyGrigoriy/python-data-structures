@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Iterable
+
 from employee import Employee
+
 
 class Company(ABC):
     @abstractmethod
@@ -32,13 +34,15 @@ class Company(ABC):
         """Returns all employees in the company."""
         pass
 
-    @abstractmethod    
+    @abstractmethod
     def get_employees_by_department(self, department: str) -> Iterable[Employee]:
         """Returns employees working in a specific department."""
         pass
 
-    @abstractmethod   
-    def get_employees_by_salary(self, from_salary: int, to_salary: int) -> Iterable[Employee]: 
+    @abstractmethod
+    def get_employees_by_salary(
+        self, from_salary: int, to_salary: int
+    ) -> Iterable[Employee]:
         """Returns employees within the specified salary range [from, to]."""
         pass
 
