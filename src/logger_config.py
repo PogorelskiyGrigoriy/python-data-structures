@@ -1,34 +1,24 @@
-import os
 import sys
-from dotenv import load_dotenv
 from loguru import logger
 
-# Load environment variables from .env file
-load_dotenv()
+from config import LOG_LEVEL, LOG_DESTINATION, LOG_SERIALIZE
 
 def setup_logging():
-    # Fetch settings from environment or use defaults
-    log_level = os.getenv("LOG_LEVEL", "INFO")
-    log_file = os.getenv("LOG_DESTINATION", "logs/app.log")
-    # Convert string from .env to boolean
-    serialize = os.getenv("LOG_SERIALIZE", "False").lower() == "true"
-
-    # Remove default handler to prevent duplicate logs
     logger.remove()
 
-    # 1. Console handler for development (colorized output)
+    # 1. Console handler
     logger.add(
         sys.stdout,
-        level=log_level,
+        level=LOG_LEVEL,
         colorize=True,
         format="<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"
     )
 
-    # 2. File handler for production (structured logs)
+    # 2. File handler
     logger.add(
-        log_file,
-        level=log_level,
-        serialize=serialize, # If True, logs are stored as JSON
+        LOG_DESTINATION,
+        level=LOG_LEVEL,
+        serialize=LOG_SERIALIZE,
         rotation="100 MB",
         retention="7 days",
         compression="zip"
