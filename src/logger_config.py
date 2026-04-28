@@ -3,6 +3,7 @@ from loguru import logger
 
 from config import LOG_LEVEL, LOG_DESTINATION, LOG_SERIALIZE
 
+
 def setup_logging():
     logger.remove()
 
