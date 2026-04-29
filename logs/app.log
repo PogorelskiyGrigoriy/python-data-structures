@@ -11,3 +11,7 @@
 2026-04-28 16:11:07.202 | INFO     | __main__:build:42 - Report 'Q2 Financials' successfully built
 2026-04-28 16:19:36.294 | INFO     | __main__:build:42 - Report 'Q2 Financials' successfully built
 2026-04-28 16:19:36.295 | INFO     | __main__:<module>:53 - Generated Report: Report(title='Q2 Financials', body='Everything is great.', footer='')
+2026-04-29 11:12:05.077 | INFO     | __main__:<module>:28 - Original: Monster Orc Warrior with skills: ['Strong', 'Green']
+2026-04-29 11:12:05.077 | INFO     | __main__:<module>:29 - Clone: Monster Elite Orc with skills: ['Strong', 'Green', 'Berserk']
+2026-04-29 11:15:07.444 | INFO     | __main__:<module>:28 - Original: Monster Orc Warrior with skills: ['Strong', 'Green']
+2026-04-29 11:15:07.444 | INFO     | __main__:<module>:29 - Clone: Monster Elite Orc with skills: ['Strong', 'Green', 'Berserk']
