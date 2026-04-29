@@ -1,13 +1,16 @@
 from dataclasses import dataclass
+
 from logger_config import setup_logging
 
 logger = setup_logging()
+
 
 @dataclass
 class Report:
     title: str = ""
     body: str = ""
     footer: str = ""
+
 
 class ReportBuilder:
     def __init__(self):
@@ -32,22 +35,19 @@ class ReportBuilder:
         # 1. Валидация
         if not self._report.title:
             logger.warning("Building report without a title")
-        
+
         # 2. Сохраняем результат
         result = self._report
-        
+
         # 3. Сбрасываем состояние билдера (чтобы начать новый отчет)
         self.reset()
-        
+
         logger.info(f"Report '{result.title}' successfully built")
         return result
 
+
 # Использование
 builder = ReportBuilder()
-my_report = (
-    builder.set_title("Q2 Financials")
-           .set_body("Everything is great.")
-           .build()
-)
+my_report = builder.set_title("Q2 Financials").set_body("Everything is great.").build()
 
-print(my_report)
+logger.info(f"Generated Report: {my_report}")
