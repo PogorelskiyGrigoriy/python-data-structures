@@ -15,3 +15,4 @@
 2026-04-29 11:12:05.077 | INFO     | __main__:<module>:29 - Clone: Monster Elite Orc with skills: ['Strong', 'Green', 'Berserk']
 2026-04-29 11:15:07.444 | INFO     | __main__:<module>:28 - Original: Monster Orc Warrior with skills: ['Strong', 'Green']
 2026-04-29 11:15:07.444 | INFO     | __main__:<module>:29 - Clone: Monster Elite Orc with skills: ['Strong', 'Green', 'Berserk']
+2026-04-29 12:22:26.098 | INFO     | __main__:wrapper:15 - Функция heavy_computation выполнена за 1.500129 сек.
