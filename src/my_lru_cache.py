@@ -1,13 +1,14 @@
 import functools
 from collections import OrderedDict
 from collections.abc import Hashable
-from typing import Generic, TypeVar, Optional, Callable, Any
+from typing import Any, Callable, Generic, Optional, TypeVar
 
-K = TypeVar('K', bound=Hashable)
-V = TypeVar('V')
+K = TypeVar("K", bound=Hashable)
+V = TypeVar("V")
+
 
 class MyLruCache(Generic[K, V]):
-    def __init__(self, capacity: int):
+    def __init__(self, capacity: int=128):
         self.capacity = capacity
         self.cache: OrderedDict[K, V] = OrderedDict()
 
@@ -27,7 +28,9 @@ class MyLruCache(Generic[K, V]):
     def clear(self) -> None:
         self.cache.clear()
 
+
 #######################
+
 
 def lru_cache_wrapper(capacity: int):
     def decorator(func: Callable) -> Callable:
@@ -42,22 +45,24 @@ def lru_cache_wrapper(capacity: int):
 
             # Пытаемся достать из кеша через твой метод access
             cached_result = my_cache.access(key)
-            
+
             if cached_result is not None:
                 return cached_result
 
             # Если в кеше нет — вычисляем
             result = func(*args, **kwargs)
-            
+
             # Добавляем в кеш через твой метод add
             my_cache.add(key, result)
-            
+
             return result
 
         # Привязываем метод очистки твоего класса к обертке
         wrapper.cache_clear = my_cache.clear
         return wrapper
+
     return decorator
+
 
 # Пример использования:
 @lru_cache_wrapper(capacity=2)
@@ -65,8 +70,9 @@ def get_data(user_id: int):
     print(f"--- Вычисляем данные для {user_id} ---")
     return {"id": user_id, "data": "some_heavy_payload"}
 
+
 # Тест
-get_data(1) # Вычислит
-get_data(1) # Возьмет из твоего MyLruCache
-get_data(2) # Вычислит
-get_data(3) # Вычислит, вытеснит (1) из твоего OrderedDict
+get_data(1)  # Вычислит
+get_data(1)  # Возьмет из твоего MyLruCache
+get_data(2)  # Вычислит
+get_data(3)  # Вычислит, вытеснит (1) из твоего OrderedDict

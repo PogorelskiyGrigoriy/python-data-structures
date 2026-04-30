@@ -1,9 +1,9 @@
+from collections import Counter, defaultdict
+
 class Solution:
-    def two_sum(self, nums: list[int], target: int) -> list[int]:
-        seen = {}
-        for index, num in enumerate(nums):
-            diff = target - num
-            if diff in seen:
-                return [seen[diff], index]
-            seen[num] = index            
-        return []
+    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
+        anagrams_map = defaultdict(list)        
+        for word in strs:
+            key = tuple(sorted(Counter(word).items()))
+            anagrams_map[key].append(word)
+        return list(anagrams_map.values())
