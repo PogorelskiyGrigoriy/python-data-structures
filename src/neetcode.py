@@ -1,9 +1,17 @@
-from collections import Counter, defaultdict
+from collections import Counter
+
 
 class Solution:
-    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
-        anagrams_map = defaultdict(list)        
-        for word in strs:
-            key = tuple(sorted(Counter(word).items()))
-            anagrams_map[key].append(word)
-        return list(anagrams_map.values())
+    def topKFrequent(self, nums: list[int], k: int) -> list[int]:
+        count = Counter(nums)
+        buckets = [[] for _ in range(len(nums) + 1)]
+
+        for num, freq in count.items():
+            buckets[freq].append(num)
+
+        result = []
+        for i in range(len(buckets) - 1, 0, -1):
+            for num in buckets[i]:
+                result.append(num)
+                if len(result) == k:
+                    return result
